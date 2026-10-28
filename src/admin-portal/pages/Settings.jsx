@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Save, User, Lock, Bell, Sliders } from 'lucide-react';
 import Card from '../../shared/components/Card';
 import Button from '../../shared/components/Button';
@@ -8,7 +8,7 @@ import { useToast } from '../../shared/context/ToastContext';
 import { dbUpdate } from '../../shared/data/db';
 
 export default function AdminSettings() {
-  const { user } = useAuth();
+  const { user, changePassword } = useAuth();
   const toast = useToast();
   const [profile, setProfile] = useState({ name: user.name, email: user.email, phone: '' });
   const [savingProfile, setSavingProfile] = useState(false);
@@ -40,10 +40,10 @@ export default function AdminSettings() {
     if (Object.keys(errs).length) return;
     setSavingPw(true);
     try {
-      await new Promise((r) => setTimeout(r, 500));
+      await changePassword(pw.current, pw.next);
       toast.success('Password updated.');
       setPw({ current: '', next: '', confirm: '' });
-    } catch { toast.error('Could not update password.'); }
+    } catch { toast.error('Could not update password. Check your current password and try again.'); }
     finally { setSavingPw(false); }
   };
 

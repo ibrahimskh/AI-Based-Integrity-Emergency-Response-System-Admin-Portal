@@ -6,7 +6,7 @@ export default function AdminLogin() {
       role="admin"
       brandLabel="ADMIN COMMAND CENTER"
       homePath="/dashboard"
-      demoEmail="admin@lifeline.demo"
+      accountHint="Sign in with a Firebase Authentication account that has admin access."
     />
   );
 }

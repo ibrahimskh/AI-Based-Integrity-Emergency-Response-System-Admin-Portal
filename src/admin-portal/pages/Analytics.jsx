@@ -76,10 +76,6 @@ export default function Analytics() {
 
   return (
     <div className="space-y-4">
-      <div className="bg-amber-50 text-amber-700 text-xs font-semibold px-3 py-2 rounded-lg inline-flex items-center gap-1.5">
-        <span className="demo-badge">DEMO DATA</span> — charts render from the current demo dataset and update live as it changes.
-      </div>
-
       <div className="grid lg:grid-cols-2 gap-4">
         <Card>
           <h3 className="font-bold mb-4">Emergency Cases — Last 7 Days</h3>

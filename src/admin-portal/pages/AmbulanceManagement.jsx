@@ -33,7 +33,7 @@ export default function AmbulanceManagement() {
   }, []);
 
   const filtered = useMemo(() => ambulances.filter((a) => {
-    const q = !query || a.id.toLowerCase().includes(query.toLowerCase()) || a.driverName.toLowerCase().includes(query.toLowerCase());
+    const q = !query || (a.registrationNumber || a.id || '').toLowerCase().includes(query.toLowerCase()) || (a.driverName || '').toLowerCase().includes(query.toLowerCase());
     const s = statusFilter === 'all' || a.status === statusFilter;
     return q && s;
   }), [ambulances, query, statusFilter]);
@@ -111,7 +111,7 @@ export default function AmbulanceManagement() {
               <tbody className="divide-y divide-lifeline-border">
                 {filtered.map((a) => (
                   <tr key={a.id} className="hover:bg-slate-50">
-                    <td className="px-5 py-3.5 font-semibold">{a.id}</td>
+                    <td className="px-5 py-3.5 font-semibold">{a.registrationNumber || a.id}</td>
                     <td className="px-5 py-3.5">{a.driverName}<p className="text-xs text-lifeline-sub">{a.driverPhone}</p></td>
                     <td className="px-5 py-3.5 text-lifeline-sub"><span className="inline-flex items-center gap-1"><MapPin size={12} /> {a.currentLocation}</span></td>
                     <td className="px-5 py-3.5"><Badge value={a.status} /></td>

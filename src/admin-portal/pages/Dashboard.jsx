@@ -72,10 +72,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-amber-50 text-amber-700 text-xs font-semibold px-3 py-2 rounded-lg inline-flex items-center gap-1.5">
-        <span className="demo-badge">DEMO DATA</span> — connect Firebase for live platform data.
-      </div>
-
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard icon={Users} label="Total Users" value={users.length} tone="blue" />
         <StatCard icon={Building2} label="Total Hospitals" value={hospitals.length} tone="blue" />

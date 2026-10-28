@@ -29,7 +29,7 @@ export default function UserManagement() {
   }, []);
 
   const filtered = useMemo(() => users.filter((u) => {
-    const q = !query || u.name.toLowerCase().includes(query.toLowerCase()) || u.email.toLowerCase().includes(query.toLowerCase());
+    const q = !query || (u.name || '').toLowerCase().includes(query.toLowerCase()) || (u.email || '').toLowerCase().includes(query.toLowerCase());
     const t = typeFilter === 'all' || u.userType === typeFilter;
     return q && t;
   }), [users, query, typeFilter]);

@@ -30,7 +30,7 @@ export default function EmergencyManagement() {
   const hospitalName = (id) => hospitals.find((h) => h.id === id)?.name || id;
 
   const filtered = useMemo(() => emergencies.filter((e) => {
-    const q = !query || e.patientName.toLowerCase().includes(query.toLowerCase()) || e.id.toLowerCase().includes(query.toLowerCase());
+    const q = !query || (e.patientName || '').toLowerCase().includes(query.toLowerCase()) || (e.id || '').toLowerCase().includes(query.toLowerCase());
     const s = statusFilter === 'all' || e.status === statusFilter;
     return q && s;
   }).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)), [emergencies, query, statusFilter]);
